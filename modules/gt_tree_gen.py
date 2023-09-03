@@ -311,7 +311,7 @@ def generate_groundtruth(metadata : Dict[str, int], seed = 42, verbose = False) 
                     #even number of letters in alphabet, exclude 0, because mutations are +<->-
                     starting_chain[k] = choice([i for i in range(int(-n_letters/2),int(n_letters/2)+1,1) if i not in [0]]) 
                     #starting_chain[k] = rdm.randrange(int(-n_letters/2),int(n_letters/2),1) #even number of letters in alphabet
-                    print("PAIR!!")
+                    #print("PAIR!!")
                 else: print("LETTERS IN ALPHABET MUST BE EVEN")
                 #NOT POSSIBLE FOR THE MOMENT DUE TO MUTATION TYPE (+<->-)    
                 #else: 
