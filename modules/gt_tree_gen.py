@@ -306,8 +306,12 @@ def generate_groundtruth(metadata : Dict[str, int], seed = 42, verbose = False) 
             
             ### change (now -1, 1 states) -> 0-19
             for k in range(0,number_spins):
-                if (n_letters % 2) == 0: starting_chain[k] = rdm.randrange(-math.floor(n_letters/2),math.floor(n_letters/2)+1,1) #even number of letters in alphabet
-                else: starting_chain[k] = rdm.randrange((n_letters/2)+1,(n_letters/2)+1,1) #uneven number of letters in alphabet
+                if n_letters % 2 == 0: 
+                    starting_chain[k] = rdm.randrange(-math.floor(n_letters/2),math.floor(n_letters/2)+1,1) #even number of letters in alphabet
+                    print("PAIR!!")
+                else: 
+                    starting_chain[k] = rdm.randrange((n_letters/2)+1,(n_letters/2)+1,1) #uneven number of letters in alphabet
+                    print("IMPAIR!!")
                     
             # OPEN sequence at equilibrium
             #starting_chain = ocd.OneClusterChainp0_02N200(Temperature, indexstartingchain)
