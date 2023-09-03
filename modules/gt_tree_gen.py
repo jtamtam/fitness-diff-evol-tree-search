@@ -306,7 +306,7 @@ def generate_groundtruth(metadata : Dict[str, int], seed = 42, verbose = False) 
             
             ### change (now -1, 1 states) -> 0-19
             for k in range(0,number_spins):
-                     starting_chain[k] = rdm.randrange(0,2,1)
+                     starting_chain[k] = rdm.randrange(1,n_letters+1,1)
                     
             # OPEN sequence at equilibrium
             #starting_chain = ocd.OneClusterChainp0_02N200(Temperature, indexstartingchain)
