@@ -309,7 +309,7 @@ def generate_groundtruth(metadata : Dict[str, int], seed = 42, verbose = False) 
             for k in range(0,number_spins):
                 if n_letters % 2 == 0: 
                     #even number of letters in alphabet, exclude 0, because mutations are +<->-
-                    starting_chain[k] = choice([i for i in range(int(-n_letters/2),int(n_letters/2),1) if i not in [0]]) 
+                    starting_chain[k] = choice([i for i in range(int(-n_letters/2),int(n_letters/2)+1,1) if i not in [0]]) 
                     #starting_chain[k] = rdm.randrange(int(-n_letters/2),int(n_letters/2),1) #even number of letters in alphabet
                     print("PAIR!!")
                 else: print("LETTERS IN ALPHABET MUST BE EVEN")
