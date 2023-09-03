@@ -275,7 +275,7 @@ def generate_groundtruth(metadata : Dict[str, int], seed = 42, verbose = False) 
     number_spins = seq_length
     
     ##seed 
-    seed = 2*(nbrf+1)
+    seed = 42 #just random seed
     rdm.seed(seed)
     Jij =  np.load('./Jij.npy')
     # proba = 0.02
