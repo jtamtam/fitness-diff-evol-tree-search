@@ -152,8 +152,7 @@ sm = jnp.ones((metadata['n_letters'],metadata['n_letters'])) - jnp.identity(meta
 
 if(args['groundtruth']):
     seqs, gt_seqs, tree = generate_groundtruth(metadata, metadata['seed'])
-
-numpy.set_printoptions(threshold=sys.maxsize)
+    numpy.set_printoptions(threshold=sys.maxsize)
     print(
         "type of seqs:", seqs.dtype,'\n'
         "shape of seqs:", seqs.shape,'\n','\n'
