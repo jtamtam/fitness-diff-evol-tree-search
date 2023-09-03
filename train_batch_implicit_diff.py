@@ -1,7 +1,7 @@
 from jax import config
 config.update("jax_enable_x64", True)
 config.update("jax_debug_nans", True)
-
+import numpy
 import os
 import sys
 
@@ -152,7 +152,8 @@ sm = jnp.ones((metadata['n_letters'],metadata['n_letters'])) - jnp.identity(meta
 
 if(args['groundtruth']):
     seqs, gt_seqs, tree = generate_groundtruth(metadata, metadata['seed'])
-    
+
+numpy.set_printoptions(threshold=sys.maxsize)
     print(
         "type of seqs:", seqs.dtype,'\n'
         "shape of seqs:", seqs.shape,'\n','\n'
