@@ -14,6 +14,7 @@ from jaxtyping import Array, Float
 #Nico file imports
 import numpy as np
 import random as rdm
+from random import choice
 
 from math import exp, expm1
 from datetime import datetime, date
@@ -307,11 +308,15 @@ def generate_groundtruth(metadata : Dict[str, int], seed = 42, verbose = False) 
             ### change (now -1, 1 states) -> 0-19
             for k in range(0,number_spins):
                 if n_letters % 2 == 0: 
-                    starting_chain[k] = rdm.randrange(int(-n_letters/2),int(n_letters/2),1) #even number of letters in alphabet
+                    #even number of letters in alphabet, exclude 0, because mutations are +<->-
+                    starting_chain[k] = choice([i for i in range(int(-n_letters/2),int(n_letters/2),1) if i not in [0]]) 
+                    #starting_chain[k] = rdm.randrange(int(-n_letters/2),int(n_letters/2),1) #even number of letters in alphabet
                     print("PAIR!!")
-                else: 
-                    starting_chain[k] = rdm.randrange(-math.floor(n_letters/2),math.floor(n_letters/2)+1,1) #uneven number of letters in alphabet
-                    print("IMPAIR!!")
+                else: print("LETTERS IN ALPHABET MUST BE EVEN")
+                #NOT POSSIBLE FOR THE MOMENT DUE TO MUTATION TYPE (+<->-)    
+                #else: 
+                    #starting_chain[k] = rdm.randrange(-math.floor(n_letters/2),math.floor(n_letters/2)+1,1) #uneven number of letters in alphabet
+                    #print("IMPAIR!!")
                     
             # OPEN sequence at equilibrium
             #starting_chain = ocd.OneClusterChainp0_02N200(Temperature, indexstartingchain)
