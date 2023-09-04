@@ -326,7 +326,6 @@ for _ in range(metadata['epochs']):
         best_tree = discretize_tree_topology(t_,n_all)
         best_seq = update_seq(params, seqs, metadata['seq_temp'])
         
-    print("best_tree:","\n",best_tree)
         ## Log the metrics
     if(_%200==0 and args['log_wandb']):
         wandb.log(
@@ -353,7 +352,8 @@ for _ in range(metadata['epochs']):
     ### update the tree loss schedule
     if(_%metadata['tLs'][3]==0):
         metadata['tLs'][0] = min(metadata['tLs'][2], metadata['tLs'][0] + metadata['tLs'][1])
-        
+
+print("best_tree:","\n",best_tree)
 print_success_info("Optimization done!\n")
 print_success_info("Final cost: {:.5f}\n".format(cost[pos]))
 print_success_info("Best cost encountered: {:.5f}\n".format(best_ans))
