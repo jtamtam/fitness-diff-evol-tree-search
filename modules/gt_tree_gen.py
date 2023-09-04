@@ -135,6 +135,8 @@ def Generate_tree(nbr_gen):
 
 ###
 
+
+
 def mutate(key, exclude_indexes):
   '''
     Mutates a sequence by randomly changing one of the letters
