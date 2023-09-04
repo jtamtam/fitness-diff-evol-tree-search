@@ -300,26 +300,32 @@ def generate_groundtruth(metadata : Dict[str, int], seed = 42, verbose = False) 
             
             
             Tree = Generate_tree(number_generations)
+            ###
             
-            ##ancestor sequence
-            starting_chain = np.zeros(number_spins, dtype = np.int8)
+            #Here it is only if we do not have a starting chain at equilibrium
+            
+            # ##ancestor sequence
+            # starting_chain = np.zeros(number_spins, dtype = np.int8)
             
             
-            ### change (now -1, 1 states) -> 0-19
-            for k in range(0,number_spins):
-                if n_letters % 2 == 0: 
-                    #even number of letters in alphabet, exclude 0, because mutations are +<->-
-                    starting_chain[k] = choice([i for i in range(int(-n_letters/2),int(n_letters/2)+1,1) if i not in [0]]) 
-                    #starting_chain[k] = rdm.randrange(int(-n_letters/2),int(n_letters/2),1) #even number of letters in alphabet
-                    #print("PAIR!!")
-                else: print("LETTERS IN ALPHABET MUST BE EVEN")
-                #NOT POSSIBLE FOR THE MOMENT DUE TO MUTATION TYPE (+<->-)    
-                #else: 
-                    #starting_chain[k] = rdm.randrange(-math.floor(n_letters/2),math.floor(n_letters/2)+1,1) #uneven number of letters in alphabet
-                    #print("IMPAIR!!")
-                    
+            # ### change (now -1, 1 states) -> 0-19
+            # for k in range(0,number_spins):
+            #     if n_letters % 2 == 0: 
+            #         #even number of letters in alphabet, exclude 0, because mutations are +<->-
+            #         starting_chain[k] = choice([i for i in range(int(-n_letters/2),int(n_letters/2)+1,1) if i not in [0]]) 
+            #         #starting_chain[k] = rdm.randrange(int(-n_letters/2),int(n_letters/2),1) #even number of letters in alphabet
+            #         #print("PAIR!!")
+            #     else: print("LETTERS IN ALPHABET MUST BE EVEN")
+            #     #NOT POSSIBLE FOR THE MOMENT DUE TO MUTATION TYPE (+<->-)    
+            #     #else: 
+            #         #starting_chain[k] = rdm.randrange(-math.floor(n_letters/2),math.floor(n_letters/2)+1,1) #uneven number of letters in alphabet
+            #         #print("IMPAIR!!")
+            
+            ###
+            
+            
             # OPEN sequence at equilibrium
-            #starting_chain = ocd.OneClusterChainp0_02N200(Temperature, indexstartingchain)
+            starting_chain = np.load("./sequences_equilibrium_T5_L200_Jij2states.npy")
 
             Tree['0/1'] = starting_chain
             ct = 2*pow(2,number_generations)-1-1
