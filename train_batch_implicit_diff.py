@@ -326,6 +326,7 @@ for _ in range(metadata['epochs']):
         best_tree = discretize_tree_topology(t_,n_all)
         best_seq = update_seq(params, seqs, metadata['seq_temp'])
         
+    print("best_tree:","\n",best_tree)
         ## Log the metrics
     if(_%200==0 and args['log_wandb']):
         wandb.log(
