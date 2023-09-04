@@ -325,7 +325,9 @@ def generate_groundtruth(metadata : Dict[str, int], seed = 42, verbose = False) 
             
             
             # OPEN sequence at equilibrium
-            starting_chain = np.load("./sequences_equilibrium_T5_L200_Jij2states.npy")
+            # starting_chain = np.load("./sequences_equilibrium_T5_L200_Jij2states.npy")
+            starting_matrix= np.load('../sequences_equilibrium_T5_L200_Jij2states.npy')
+            starting_chain=np.reshape(starting_matrix[np.random.choice(starting_matrix.shape[0], 1)],(200,))
 
             Tree['0/1'] = starting_chain
             ct = 2*pow(2,number_generations)-1-1
