@@ -43,42 +43,6 @@ from arg_parser_v2 import *
 #Quantifying unbalance functions
 ###
 
-def calculate_balance_factor(upper_triangular_matrix):
-    n = len(upper_triangular_matrix)
-    
-    # Initialize a list to store balance factors
-    balance_factors = []
-    
-    # Iterate through each node
-    for i in range(n):
-        left_child_index = i * 2 + 1
-        right_child_index = i * 2 + 2
-        
-        # Initialize counts for left and right subtree sizes
-        left_subtree_size = 0
-        right_subtree_size = 0
-        
-        # Check if left child index is within bounds
-        if left_child_index < n:
-            left_subtree_size = numpy.sum(upper_triangular_matrix[left_child_index, i+1:])
-        
-        # Check if right child index is within bounds
-        if right_child_index < n:
-            right_subtree_size = numpy.sum(upper_triangular_matrix[right_child_index, i+1:])
-        
-        # Calculate the balance factor for the current node
-        balance_factor = left_subtree_size - right_subtree_size
-        balance_factors.append(balance_factor)
-    
-    return balance_factors
-
-def quantify_unbalance(upper_triangular_matrix):
-    balance_factors = calculate_balance_factor(upper_triangular_matrix)
-    
-    # Calculate the unbalance measure as the sum of the absolute values of balance factors
-    unbalance_measure = sum(map(abs, balance_factors))
-    
-    return unbalance_measure
 
 
 ###
@@ -211,7 +175,6 @@ if(args['groundtruth']):
         gt_seqs,'\n','\n',
         tree
         )
-    print("Unbalance Measure of Groundtruth Tree= ",quantify_unbalance(tree))
 
     seqs    = jax.nn.one_hot(seqs, n_letters).astype(jnp.float64)
     gt_seqs = jax.nn.one_hot(gt_seqs, n_letters).astype(jnp.float64)
@@ -397,7 +360,6 @@ for _ in range(metadata['epochs']):
     if(_%metadata['tLs'][3]==0):
         metadata['tLs'][0] = min(metadata['tLs'][2], metadata['tLs'][0] + metadata['tLs'][1])
 
-print("Unbalance Measure of Best Tree= ",quantify_unbalance(best_tree))
 print_success_info("Optimization done!\n")
 print_success_info("Final cost: {:.5f}\n".format(cost[pos]))
 print_success_info("Best cost encountered: {:.5f}\n".format(best_ans))
