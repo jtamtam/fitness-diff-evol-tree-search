@@ -153,7 +153,7 @@ sm = jnp.ones((metadata['n_letters'],metadata['n_letters'])) - jnp.identity(meta
 if(args['groundtruth']):
     seqs, gt_seqs, tree = generate_groundtruth(metadata, metadata['seed'])
     numpy.set_printoptions(threshold=sys.maxsize)
-    print("number of differences between parent-child="np.count_nonzero(gt_seqs[0]==seqs[8]))
+    print("number of differences between parent-child="numpy.count_nonzero(gt_seqs[0]==seqs[8]))
     print(
         "type of seqs:", seqs.dtype,'\n'
         "shape of seqs:", seqs.shape,'\n','\n'
