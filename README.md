@@ -10,7 +10,7 @@ Our work introduces a differentiable approach to phylogenetic tree construction,
 
 To run examples in colab, click the below link
 
-"<a href=\"https://colab.research.google.com/github/jtamtam/fitness-diff-evol-tree-search/blob/main/run_on_colab.ipynb" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+<a href=\"https://colab.research.google.com/github/jtamtam/fitness-diff-evol-tree-search/blob/main/run_on_colab.ipynb" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>
 
 #### **Checklist**
 
