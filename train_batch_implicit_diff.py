@@ -213,7 +213,7 @@ if(args['groundtruth']):
         tree
         )
     
-    print("unbalance of groundtruth tree=", quantifying(unbalance))
+    print("unbalance of groundtruth tree=", quantifying_unbalance(tree))
     
     seqs    = jax.nn.one_hot(seqs, n_letters).astype(jnp.float64)
     gt_seqs = jax.nn.one_hot(gt_seqs, n_letters).astype(jnp.float64)
@@ -423,7 +423,7 @@ else:
 best_tree_img = show_graph_with_labels(best_tree, n_leaves, True)
 best_tree_adj = px.imshow(best_tree, text_auto=True)
 
-print("unbalance of best_tree=", quantifying(best_tree))
+print("unbalance of best_tree=", quantifying_unbalance(best_tree))
 
 if(args['log_wandb']):
     wandb.log({
