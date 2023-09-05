@@ -43,7 +43,44 @@ from arg_parser_v2 import *
 #Quantifying unbalance functions
 ###
 
+def identify_diagonal_row_with_one(binary_matrix):
+    m = len(binary_matrix)
+    
+    # Iterate through the matrix diagonal and find the row with a "1"
+    for i in range(m):
+        if binary_matrix[i][i] == 1:
+            return i
+    
+    # If no "1" is found on the diagonal, return None
+    return None
 
+def find_row_with_column_value(matrix, column_index, value_to_find):
+    matching_indices=[]
+    for i, row in enumerate(matrix):
+        if row[column_index] == value_to_find:
+            if i != column_index:
+                 matching_indices.append(i)
+    return matching_indices
+
+
+def find_recursive_rows_with_column_value(matrix, column_indices, value_to_find):
+    a=len(column_indices)
+    for i, row in enumerate(matrix):
+        for idx in column_indices:
+            if row[idx]==1 and i not in column_indices:
+                column_indices.append(i)
+    b=len(column_indices)
+    if a==b: return column_indices
+    if a!=b: return find_recursive_rows_with_column_value(matrix, column_indices, value_to_find)
+
+def quantifying_unbalance(matrix):
+    root_index=identify_diagonal_row_with_one(matrix)
+    left_indices=[find_row_with_column_value(matrix,identify_diagonal_row_with_one(matrix),1)[0]]
+    right_indices=[find_row_with_column_value(matrix,identify_diagonal_row_with_one(matrix),1)[1]]
+    left_indices=find_recursive_rows_with_column_value(matrix, left_indices, 1)
+    right_indices=find_recursive_rows_with_column_value(matrix, right_indices, 1)
+    imbalance=abs(len(left_indices)-len(right_indices))
+    return imbalance
 
 ###
 
@@ -175,7 +212,9 @@ if(args['groundtruth']):
         gt_seqs,'\n','\n',
         tree
         )
-
+    
+    print("unbalance of groundtruth tree=", quantifying(unbalance))
+    
     seqs    = jax.nn.one_hot(seqs, n_letters).astype(jnp.float64)
     gt_seqs = jax.nn.one_hot(gt_seqs, n_letters).astype(jnp.float64)
 
@@ -383,6 +422,8 @@ else:
 
 best_tree_img = show_graph_with_labels(best_tree, n_leaves, True)
 best_tree_adj = px.imshow(best_tree, text_auto=True)
+
+print("unbalance of best_tree=", quantifying(best_tree))
 
 if(args['log_wandb']):
     wandb.log({
