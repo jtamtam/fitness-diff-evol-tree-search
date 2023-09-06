@@ -113,7 +113,6 @@ def enforce_graph(t_ : Float[Array, "nodes nodes"], s : Float, metadata = None, 
     
     if(verbose):
         print("bifurcating tree_forcing_loss = ", tree_force_loss)
-    print("bifurcating tree_forcing_loss = ", tree_force_loss)
 
     return tree_force_loss
 
