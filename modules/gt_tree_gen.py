@@ -216,6 +216,7 @@ def generate_groundtruth(metadata : Dict[str, int], seed = 42, verbose = False) 
     n_ancestors = metadata['n_ancestors']
     seq_length  = metadata['seq_length']
     n_letters   = metadata['n_letters']
+    init_equilibrium = metadata['init_equilibrium']
 
     target_depth = int(math.log2(n_leaves))-1
 
@@ -328,8 +329,12 @@ def generate_groundtruth(metadata : Dict[str, int], seed = 42, verbose = False) 
             
             # OPEN sequence at equilibrium
             # starting_chain = np.load("./sequences_equilibrium_T5_L200_Jij2states.npy")
-            starting_matrix= np.load('./sequences_equilibrium_T5_L200_Jij2states.npy')
-            starting_chain=np.reshape(starting_matrix[np.random.choice(starting_matrix.shape[0], 1)],(200,))
+            if init_equilibrium:
+                starting_matrix= np.load('./sequences_equilibrium_T5_L200_Jij2states.npy')
+                starting_chain=np.reshape(starting_matrix[np.random.choice(starting_matrix.shape[0], 1)],(200,))
+            else: 
+                starting_chain=np.random.choice([-1,1], seq_length)
+                #seq=jnp.array(seq)
 
             Tree['0/1'] = starting_chain
             ct = 2*pow(2,number_generations)-1-1

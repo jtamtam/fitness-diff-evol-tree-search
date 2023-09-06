@@ -40,6 +40,7 @@ def parse_args_v2():
     parser.add_argument('-m','--mutations'   , help='# of muations?'  , required=False, type = int)
     parser.add_argument('-sl','--seq_length' , help='length of seq'   , required=False, type = int)
     parser.add_argument('-nl','--letters'    , help='# of letters?'    , required=False, type = int)
+    parser.add_argument('-ie','--init_equilibrium'    , help='root at equilibrium?'    , required=False, type = bool)
     parser.add_argument('-s','--seed'        , help='seed'            , required=False, type = int)
 
     parser.add_argument('-ai','--alternate_interval', help='alternate_interval', required=False, type = int)
