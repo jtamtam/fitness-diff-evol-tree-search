@@ -40,7 +40,6 @@ def parse_args_v2():
     parser.add_argument('-m','--mutations'   , help='# of muations?'  , required=False, type = int)
     parser.add_argument('-sl','--seq_length' , help='length of seq'   , required=False, type = int)
     parser.add_argument('-nl','--letters'    , help='# of letters?'    , required=False, type = int)
-    parser.add_argument('-ie','--init_equilibrium'    , help='root at equilibrium?'    , required=False, type = bool)
     parser.add_argument('-s','--seed'        , help='seed'            , required=False, type = int)
 
     parser.add_argument('-ai','--alternate_interval', help='alternate_interval', required=False, type = int)
@@ -63,6 +62,9 @@ def parse_args_v2():
 
     parser.add_argument('-it', '--initialize_tree', action='store_true', help='Initialize Tree with groundtruth?')
     parser.set_defaults(initialize_tree=False)
+    
+    parser.add_argument('-ie','--init_equilibrium', action='store_true', help='Initial root at equilibrium?')
+    parser.set_defaults(init_equilibrium=False)
 
     parser.add_argument('-is', '--initialize_seq', action='store_true', help='Initialize Seq with groundtruth?')
     parser.set_defaults(initialize_seq=False)
