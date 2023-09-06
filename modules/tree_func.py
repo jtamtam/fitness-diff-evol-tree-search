@@ -90,7 +90,7 @@ def update_seq(params : Dict[str, Array], seqs : Float[Array, "nodes letters"], 
     return seqs
 
 @jit
-def enforce_graph(t_ : Float[Array, "nodes nodes"], s : Float, metadata = None, verbose = True) -> List[Float]:
+def enforce_graph(t_ : Float[Array, "nodes nodes"], s : Float, metadata = None, verbose = False) -> List[Float]:
     ''' 
 
         Enforces constraints such that the tree is bifurcating
@@ -113,6 +113,7 @@ def enforce_graph(t_ : Float[Array, "nodes nodes"], s : Float, metadata = None, 
     
     if(verbose):
         print("bifurcating tree_forcing_loss = ", tree_force_loss)
+    print("bifurcating tree_forcing_loss = ", tree_force_loss)
 
     return tree_force_loss
 
