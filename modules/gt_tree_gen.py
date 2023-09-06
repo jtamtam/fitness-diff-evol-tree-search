@@ -299,6 +299,8 @@ def generate_groundtruth(metadata : Dict[str, int], seed = 42, verbose = False) 
             date = today.strftime("%Y_%m_%d_")
             hour = startTime.strftime('%H_%M_%S_')
             
+            print(mut)
+            
             number_mutations = mut
             
             
