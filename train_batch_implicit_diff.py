@@ -139,7 +139,6 @@ n_ancestors = n_leaves - 1
 n_all       = n_leaves + n_ancestors
 n_mutations = int(args['mutations']) if args['mutations']!=None else 3
 n_letters   = int(args['letters']) if args['letters']!=None else 20
-init_equilibrium = bool(args['init_equilibrium']) if args['init_equilibrium'] != None else True
 
 args['tree_loss_schedule'] = eval(args['tree_loss_schedule']) if args['tree_loss_schedule']!=None else [0,0.01,100,5]
  
@@ -149,7 +148,7 @@ metadata = {
     'n_ancestors' : n_ancestors,
     'seq_length' : seq_length,
     'n_letters' : n_letters,
-    'init_equilibrium' : init_equilibrium,
+    'init_equilibrium' : args['init_equilibrium'],
     'n_mutations' : n_mutations,
     'args': args,
     'exp_name' : f"l={n_leaves}, m={n_mutations}, s={seq_length}, fs={args['fix_seqs']}, ft={args['fix_tree']}" ,
